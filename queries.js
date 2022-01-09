@@ -163,7 +163,18 @@ class Company {
             console.log('Employee added to database');
         });
     };
-}
 
+    updateEmployee(employeeId, newRoleId) {
+        const sql = `UPDATE employees SET role_id = ? WHERE id = ?`;
+        const params = [newRoleId, employeeId];
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                console.log(err.message);
+                return;
+            } 
+            console.log('Employee role updated in database');
+        });
+    };
+}
 
 module.exports = { Company };
